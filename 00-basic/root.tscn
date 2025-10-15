@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cucvqrow1ae2s"]
+
+[ext_resource type="PackedScene" uid="uid://cador58c8ms7u" path="res://ball.tscn" id="1_pq8q7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pq8q7"]
+bounce = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pyidc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvh5c"]
+albedo_color = Color(0.46229059, 0.46229064, 0.4622904, 1)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_pyidc"]
+
+[node name="root" type="Node3D"]
+
+[node name="ball" parent="." instance=ExtResource("1_pq8q7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1479036, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.7938565, -0.21467023, 0.56895393, -0.037765615, 0.91640747, 0.39846092, -0.60693127, -0.3378077, 0.7193889, 2.8810756, 2.290124, 3.4651663)
+fov = 50.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.070842355, -0.50904137, 0.8578218, -0.04189605, 0.86074203, 0.5073143, -0.9966073, 0, -0.08230382, 2.4621665, 2.358946, 0)
+
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_pq8q7")
+
+[node name="ground" type="MeshInstance3D" parent="RigidBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("PlaneMesh_pyidc")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_vvh5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("WorldBoundaryShape3D_pyidc")
