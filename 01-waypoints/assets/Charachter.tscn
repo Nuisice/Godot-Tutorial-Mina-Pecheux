@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bun41yoarco4p"]
+
+[ext_resource type="Script" uid="uid://b88u2qiyogle5" path="res://scripts/CharachterPatrol.cs" id="1_c344e"]
+[ext_resource type="Material" uid="uid://2u1votwidimg" path="res://art/materials/red.tres" id="1_qk13a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c344e"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qel85"]
+
+[node name="Charachter" type="Node3D"]
+script = ExtResource("1_c344e")
+_totalLoopTime = 15.0
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_c344e")
+surface_material_override/0 = ExtResource("1_qk13a")
+
+[node name="Head" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9120399, 0.24934411)
+mesh = SubResource("SphereMesh_qel85")
+surface_material_override/0 = ExtResource("1_qk13a")
+
+[node name="WaypointTimer" type="Timer" parent="."]
+one_shot = true

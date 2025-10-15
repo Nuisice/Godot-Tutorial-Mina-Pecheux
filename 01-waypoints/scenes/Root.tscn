@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq77o2i3fkbc"]
+
+[ext_resource type="PackedScene" uid="uid://bun41yoarco4p" path="res://assets/Charachter.tscn" id="1_1bxvr"]
+[ext_resource type="Material" uid="uid://qdrqlijtnstm" path="res://art/materials/grid.tres" id="2_m7djw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1bxvr"]
+material = ExtResource("2_m7djw")
+size = Vector2(100, 100)
+
+[sub_resource type="Curve3D" id="Curve3D_m7djw"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -29.88469, 0, 10.134807, 0, 0, 0, 0, 0, 0, -19.935501, 0, -19.972624, 0, 0, 0, 0, 0, 0, 20.121109, 0, -20.009747, 0, 0, 0, 0, 0, 0, 20.046867, 0, 20.046871),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Root" type="Node3D"]
+
+[node name="BASE" type="Node" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="BASE"]
+mesh = SubResource("PlaneMesh_1bxvr")
+skeleton = NodePath("../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BASE"]
+transform = Transform3D(1, 0, 0, 0, 0.6868845, 0.7267665, 0, -0.7267665, 0.6868845, 0, 25.421024, 38.081215)
+
+[node name="Camera3D" type="Camera3D" parent="BASE"]
+transform = Transform3D(0.70132, -0.28567243, 0.6531015, 2.0940853e-08, 0.91618794, 0.40074882, -0.71284664, -0.2810531, 0.64254093, 24.829472, 15.315714, 22.300842)
+fov = 45.0
+
+[node name="Path" type="Path3D" parent="."]
+curve = SubResource("Curve3D_m7djw")
+
+[node name="PathFollow" type="PathFollow3D" parent="Path"]
+transform = Transform3D(0.9494996, 0, -0.31376815, 0, 1, 0, 0.31376815, 0, 0.9494996, -29.88469, 0, 10.134807)
+rotation_mode = 4
+
+[node name="Charachter" parent="Path/PathFollow" instance=ExtResource("1_1bxvr")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.0889082, 0)
