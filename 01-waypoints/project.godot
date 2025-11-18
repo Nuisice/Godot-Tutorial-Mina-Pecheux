@@ -14,6 +14,7 @@ config/name="01-Waypoints"
 run/main_scene="uid://bq77o2i3fkbc"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+config/tags=PackedStringArray("tutorial")
 
 [dotnet]
 
