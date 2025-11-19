@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cv5t354x5kc8f"]
+
+[ext_resource type="Script" uid="uid://daawf3ioymijj" path="res://scripts/TowerManager.cs" id="1"]
+[ext_resource type="PackedScene" path="res://assets/CannonBall.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://i60ulf3u6y4o" path="res://art/towers/tower-base.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://gremm4yuu0je" path="res://art/towers/cannon.png" id="4"]
+
+[sub_resource type="CircleShape2D" id="3"]
+radius = 500.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhks2"]
+size = Vector2(128, 128)
+
+[node name="Tower" type="Area2D"]
+z_index = 2
+monitorable = false
+script = ExtResource("1")
+_cannonBallAsset = ExtResource("2")
+
+[node name="Base" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("3")
+
+[node name="Cannon" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -1)
+scale = Vector2(3, 3)
+texture = ExtResource("4")
+
+[node name="FOVArea2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FOVArea2D"]
+shape = SubResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jhks2")
+
+[connection signal="mouse_entered" from="." to="." method="_OnTowerMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="_OnTowerMouseExited"]

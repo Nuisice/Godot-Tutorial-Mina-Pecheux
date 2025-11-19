@@ -1,25 +1,31 @@
-using System;
 using Godot;
+using System;
 
-public partial class CannonBallManager : CharacterBody2D
+namespace TowerDefense.Tutorial02_Base
 {
-    private Vector2 _velocity = Vector2.Zero;
-    public int damage;
+	
+	public partial class CannonBallManager : CharacterBody2D
+	{
 
-    public void Initialize(Vector2 velocity, int damage, float speed)
-    {
-        _velocity = velocity;
-        this.damage = damage;
-    }
+		private Vector2 _velocity = Vector2.Zero;
+		public int damage;
+		
+		public void Initialize(Vector2 velocity, int damage, float speed)
+		{
+			_velocity = velocity * speed * 2000;
+			this.damage = damage;
+		}
 
-    public override void _Process(double delta)
-    {
-        Velocity = _velocity;
-        MoveAndSlide();
-    }
-
-    private void _OnScreenExited()
-    {
-        QueueFree();
-    }
+		public override void _Process(double delta)
+		{
+			Velocity = _velocity;
+			MoveAndSlide();
+		}
+		
+		private void _OnScreenExited()
+		{
+			QueueFree();
+		}
+	}
+	
 }

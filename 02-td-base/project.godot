@@ -12,7 +12,13 @@ config_version=5
 
 config/name="02-TDBase"
 config/tags=PackedStringArray("tutorial")
+run/main_scene="uid://b5t024gdv217i"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
+
+[display]
+
+window/size/viewport_width=3024
+window/size/viewport_height=1964
 
 [dotnet]
 
